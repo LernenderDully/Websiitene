@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ideen-Pinbrett</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="top-bar">
+    <div class="brand">Ideen-Pinbrett</div>
+    <div class="actions">
+      <button id="editToggle" class="ghost">Notizen bearbeiten</button>
+      <button id="connectToggle" class="ghost">Connection ziehen</button>
+      <button id="addNote" class="primary">Neue Notiz</button>
+    </div>
+  </header>
+
+  <main>
+    <section id="boardWrapper">
+      <svg id="connectionLayer"></svg>
+      <div id="board" aria-label="Pinbrett"></div>
+    </section>
+  </main>
+
+  <div id="noteModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="noteModalTitle">
+    <div class="modal-content">
+      <header class="modal-header">
+        <h2 id="noteModalTitle">Neue Notiz</h2>
+        <button class="icon" id="closeModal" aria-label="Modal schließen">✕</button>
+      </header>
+      <form id="noteForm">
+        <div class="form-row">
+          <label for="title">Titel</label>
+          <input id="title" name="title" type="text" required placeholder="Schneller Titel" />
+        </div>
+        <div class="form-row">
+          <label for="content">Text</label>
+          <textarea id="content" name="content" rows="3" placeholder="Was möchtest du festhalten?"></textarea>
+        </div>
+        <div class="form-row columns">
+          <div>
+            <label for="imageUrl">Bild-URL</label>
+            <input id="imageUrl" name="imageUrl" type="url" placeholder="https://..." />
+          </div>
+          <div>
+            <label for="color">Farbe</label>
+            <input id="color" name="color" type="color" value="#f8d86b" />
+          </div>
+        </div>
+        <div class="form-row columns">
+          <div>
+            <label for="tags">Schlagwörter</label>
+            <input id="tags" name="tags" type="text" placeholder="kreativ, ui, kundenfeedback" />
+          </div>
+          <div>
+            <label for="extras">Weiteres</label>
+            <input id="extras" name="extras" type="text" placeholder="Links, Team, Status..." />
+          </div>
+        </div>
+        <footer class="modal-footer">
+          <button type="button" class="ghost" id="cancelModal">Abbrechen</button>
+          <button type="submit" class="primary">Anpinnen</button>
+        </footer>
+      </form>
+    </div>
+  </div>
+
+  <div id="detailView" class="detail hidden">
+    <button id="backToBoard" class="ghost back">← Zurück</button>
+    <article class="detail-card">
+      <header>
+        <div class="detail-meta">
+          <p class="detail-tags" id="detailTags"></p>
+          <p class="detail-extra" id="detailExtras"></p>
+        </div>
+        <h2 id="detailTitle"></h2>
+      </header>
+      <div class="detail-body">
+        <div class="detail-text" id="detailContent"></div>
+        <img id="detailImage" alt="Notizbild" />
+      </div>
+    </article>
+  </div>
+
+  <div id="hint" class="hint">Klick ins Brett setzt eine neue Notiz.</div>
+
+  <script src="script.js"></script>
+</body>
+</html>
